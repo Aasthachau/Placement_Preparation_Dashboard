@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Placement Prep Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  
+  <!-- Dashboard Page -->
+  <div id="dashboard-page" class="page">
+    <div class="dashboard">
+      <!-- Left Column -->
+      <div class="left-panel">
+        <header>
+          <h1><span class="highlight">Placement Preparation</span> Dashboard ⚡</h1>
+          <p class="subtitle">Track • Revise • Achieve 🎯</p>
+        </header>
+
+        <!-- Task Input -->
+        <div class="card input-card">
+          <input type="text" id="new-task" placeholder="Add new task (e.g. Trees in DSA)" />
+          <select id="task-category">
+            <option value="DSA">DSA</option>
+            <option value="Aptitude">Aptitude</option>
+            <option value="Verbal">Verbal</option>
+          </select>
+          <button id="add-btn">➕ Add</button>
+        </div>
+
+        <!-- Progress Bars -->
+        <div class="card">
+          <h2>📈 Progress</h2>
+          <div class="bar"><label>DSA</label><progress id="dsa-bar" value="0" max="100"></progress><span id="dsa-percent">0%</span></div>
+          <div class="bar"><label>Aptitude</label><progress id="aptitude-bar" value="0" max="100"></progress><span id="aptitude-percent">0%</span></div>
+          <div class="bar"><label>Verbal</label><progress id="verbal-bar" value="0" max="100"></progress><span id="verbal-percent">0%</span></div>
+        </div>
+
+        <!-- Badges -->
+        <div class="card">
+          <h2>🏅 Achievements</h2>
+          <div id="badges"></div>
+        </div>
+      </div>
+
+      <!-- Center Column -->
+      <div class="center-panel">
+        <div class="card chart-card">
+          <h2><center>  🥧 Task  Distribution</center></h2>
+          <canvas id="pieChart"></canvas>
+        </div>
+        <div class="card tasks-card">
+          <div class="tasks-container">
+            <div class="task-box">
+              <h3>📝 Pending</h3>
+              <ul id="pending-tasks" class="task-list"></ul>
+            </div>
+            <div class="task-box">
+              <h3>✅ Completed</h3>
+              <ul id="completed-tasks" class="task-list"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="right-panel">
+        <div class="card reminder-card">
+          <h2>⏰ Revision Reminder</h2>
+          <p id="revision-text">Complete some tasks to get reminders!</p>
+        </div>
+        <div class="card quote-card">
+          <h2>💡 Motivation</h2>
+          <p id="quote"></p>
+        </div>
+      </div>
+    </div>
+    <!-- Calendar Widget -->
+    <div class="calendar-widget">
+      <div class="calendar-header" id="calendar-header"></div>
+      <div class="calendar-grid" id="calendar-grid"></div>
+    </div>
+  </div>
+<!-- Aptitude Page -->
+<div id="aptitude-page" class="page" style="display:none;">
+  <h1 class="aptitude-heading">⚡ Aptitude Practice ⚡</h1>
+  <div class="aptitude-container">
+
+    <!-- Quantitative -->
+    <div class="aptitude-column">
+      <h2>📊 Quantitative</h2>
+      <ul>
+        <li>Percentages <button onclick="addTaskFromAptitude('Percentages','Aptitude')">➕</button></li>
+        <li>Profit & Loss <button onclick="addTaskFromAptitude('Profit & Loss','Aptitude')">➕</button></li>
+        <li>Simple Interest <button onclick="addTaskFromAptitude('Simple Interest','Aptitude')">➕</button></li>
+        <li>Compound Interest <button onclick="addTaskFromAptitude('Compound Interest','Aptitude')">➕</button></li>
+        <li>Ratio & Proportion <button onclick="addTaskFromAptitude('Ratio & Proportion','Aptitude')">➕</button></li>
+        <li>Time & Work <button onclick="addTaskFromAptitude('Time & Work','Aptitude')">➕</button></li>
+        <li>Time, Speed & Distance <button onclick="addTaskFromAptitude('Time, Speed & Distance','Aptitude')">➕</button></li>
+        <li>Averages <button onclick="addTaskFromAptitude('Averages','Aptitude')">➕</button></li>
+        <li>Mixtures & Alligations <button onclick="addTaskFromAptitude('Mixtures & Alligations','Aptitude')">➕</button></li>
+        <li>Permutations & Combinations <button onclick="addTaskFromAptitude('Permutations & Combinations','Aptitude')">➕</button></li>
+        <li>Probability <button onclick="addTaskFromAptitude('Probability','Aptitude')">➕</button></li>
+        <li>Geometry & Mensuration <button onclick="addTaskFromAptitude('Geometry & Mensuration','Aptitude')">➕</button></li>
+        <li>Number System <button onclick="addTaskFromAptitude('Number System','Aptitude')">➕</button></li>
+      </ul>
+    </div>
+
+    <!-- Logical Reasoning -->
+    <div class="aptitude-column">
+      <h2>🧩 Logical Reasoning</h2>
+      <ul>
+        <li>Blood Relations <button onclick="addTaskFromAptitude('Blood Relations','Aptitude')">➕</button></li>
+        <li>Seating Arrangement <button onclick="addTaskFromAptitude('Seating Arrangement','Aptitude')">➕</button></li>
+        <li>Puzzles <button onclick="addTaskFromAptitude('Puzzles','Aptitude')">➕</button></li>
+        <li>Syllogisms <button onclick="addTaskFromAptitude('Syllogisms','Aptitude')">➕</button></li>
+        <li>Coding-Decoding <button onclick="addTaskFromAptitude('Coding-Decoding','Aptitude')">➕</button></li>
+        <li>Directions & Distances <button onclick="addTaskFromAptitude('Directions & Distances','Aptitude')">➕</button></li>
+        <li>Data Sufficiency <button onclick="addTaskFromAptitude('Data Sufficiency','Aptitude')">➕</button></li>
+        <li>Inequalities <button onclick="addTaskFromAptitude('Inequalities','Aptitude')">➕</button></li>
+        <li>Statement & Assumptions <button onclick="addTaskFromAptitude('Statement & Assumptions','Aptitude')">➕</button></li>
+        <li>Critical Reasoning <button onclick="addTaskFromAptitude('Critical Reasoning','Aptitude')">➕</button></li>
+      </ul>
+    </div>
+
+    <!-- Verbal Ability -->
+    <div class="aptitude-column">
+      <h2>📝 Verbal Ability</h2>
+      <ul>
+        <li>Reading Comprehension <button onclick="addTaskFromAptitude('Reading Comprehension','Verbal')">➕</button></li>
+        <li>Error Spotting <button onclick="addTaskFromAptitude('Error Spotting','Verbal')">➕</button></li>
+        <li>Sentence Completion <button onclick="addTaskFromAptitude('Sentence Completion','Verbal')">➕</button></li>
+        <li>Synonyms & Antonyms <button onclick="addTaskFromAptitude('Synonyms & Antonyms','Verbal')">➕</button></li>
+        <li>Para Jumbles <button onclick="addTaskFromAptitude('Para Jumbles','Verbal')">➕</button></li>
+        <li>Idioms & Phrases <button onclick="addTaskFromAptitude('Idioms & Phrases','Verbal')">➕</button></li>
+        <li>One Word Substitution <button onclick="addTaskFromAptitude('One Word Substitution','Verbal')">➕</button></li>
+        <li>Spelling Check <button onclick="addTaskFromAptitude('Spelling Check','Verbal')">➕</button></li>
+        <li>Sentence Correction <button onclick="addTaskFromAptitude('Sentence Correction','Verbal')">➕</button></li>
+        <li>Cloze Test <button onclick="addTaskFromAptitude('Cloze Test','Verbal')">➕</button></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Navigation: Add DSA & Core Subjects Tabs -->
+<nav class="navbar">
+  <ul>
+    <li><a href="#" onclick="showPage('dashboard')">Dashboard</a></li>
+    <li><a href="#" onclick="showPage('aptitude')">Aptitude</a></li>
+    <li><a href="#" onclick="showPage('dsa')">DSA</a></li>
+    <li><a href="#" onclick="showPage('core')">Core Subjects</a></li>
+  </ul>
+</nav>
+
+<!-- DSA Page -->
+<div id="dsa-page" class="page" style="display:none;">
+  <h1 class="tab-heading dsa-heading">🧮 DSA Topics 🧮</h1>
+  <div class="dsa-container">
+    <div class="dsa-section-card">
+      <h2>Basics</h2>
+      <ul>
+        <li>Arrays <button onclick="addTaskFromList('Arrays','DSA')">➕</button></li>
+        <li>Strings <button onclick="addTaskFromList('Strings','DSA')">➕</button></li>
+        <li>Linked Lists <button onclick="addTaskFromList('Linked Lists','DSA')">➕</button></li>
+        <li>Stacks <button onclick="addTaskFromList('Stacks','DSA')">➕</button></li>
+        <li>Queues <button onclick="addTaskFromList('Queues','DSA')">➕</button></li>
+      </ul>
+    </div>
+    <div class="dsa-section-card">
+      <h2>Intermediate</h2>
+      <ul>
+        <li>Trees <button onclick="addTaskFromList('Trees','DSA')">➕</button></li>
+        <li>Binary Search Trees <button onclick="addTaskFromList('Binary Search Trees','DSA')">➕</button></li>
+        <li>Heaps <button onclick="addTaskFromList('Heaps','DSA')">➕</button></li>
+        <li>Hashing <button onclick="addTaskFromList('Hashing','DSA')">➕</button></li>
+      </ul>
+    </div>
+    <div class="dsa-section-card">
+      <h2>Advanced</h2>
+      <ul>
+        <li>Graphs <button onclick="addTaskFromList('Graphs','DSA')">➕</button></li>
+        <li>Greedy Algorithms <button onclick="addTaskFromList('Greedy','DSA')">➕</button></li>
+        <li>Dynamic Programming <button onclick="addTaskFromList('Dynamic Programming','DSA')">➕</button></li>
+        <li>Backtracking <button onclick="addTaskFromList('Backtracking','DSA')">➕</button></li>
+        <li>Trie <button onclick="addTaskFromList('Trie','DSA')">➕</button></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Core Subjects Page -->
+<div id="core-page" class="page" style="display:none;">
+  <h1 class="tab-heading core-heading">📚 Core Subjects 📚</h1>
+  <div class="core-container">
+    <div class="core-subject-card">
+      <h2>Operating Systems</h2>
+      <ul>
+        <li>Process Management <button onclick="addTaskFromList('Process Management','Core')">➕</button></li>
+        <li>Threads & Concurrency <button onclick="addTaskFromList('Threads & Concurrency','Core')">➕</button></li>
+        <li>Memory Management <button onclick="addTaskFromList('Memory Management','Core')">➕</button></li>
+        <li>Scheduling Algorithms <button onclick="addTaskFromList('Scheduling Algorithms','Core')">➕</button></li>
+      </ul>
+    </div>
+    <div class="core-subject-card">
+      <h2>DBMS</h2>
+      <ul>
+        <li>Normalization <button onclick="addTaskFromList('Normalization','Core')">➕</button></li>
+        <li>SQL & Queries <button onclick="addTaskFromList('SQL & Queries','Core')">➕</button></li>
+        <li>Indexing <button onclick="addTaskFromList('Indexing','Core')">➕</button></li>
+        <li>Transactions & ACID <button onclick="addTaskFromList('Transactions & ACID','Core')">➕</button></li>
+      </ul>
+    </div>
+    <div class="core-subject-card">
+      <h2>Computer Networks</h2>
+      <ul>
+        <li>OSI & TCP/IP Models <button onclick="addTaskFromList('OSI & TCP/IP Models','Core')">➕</button></li>
+        <li>Routing & Switching <button onclick="addTaskFromList('Routing & Switching','Core')">➕</button></li>
+        <li>Congestion Control <button onclick="addTaskFromList('Congestion Control','Core')">➕</button></li>
+        <li>Network Security <button onclick="addTaskFromList('Network Security','Core')">➕</button></li>
+      </ul>
+    </div>
+    <div class="core-subject-card">
+      <h2>OOPS</h2>
+      <ul>
+        <li>Encapsulation <button onclick="addTaskFromList('Encapsulation','Core')">➕</button></li>
+        <li>Inheritance <button onclick="addTaskFromList('Inheritance','Core')">➕</button></li>
+        <li>Polymorphism <button onclick="addTaskFromList('Polymorphism','Core')">➕</button></li>
+        <li>Abstraction <button onclick="addTaskFromList('Abstraction','Core')">➕</button></li>
+      </ul>
+    </div>
+    <div class="core-subject-card">
+      <h2>Software Engineering</h2>
+      <ul>
+        <li>SDLC Models <button onclick="addTaskFromList('SDLC Models','Core')">➕</button></li>
+        <li>Requirement Analysis <button onclick="addTaskFromList('Requirement Analysis','Core')">➕</button></li>
+        <li>Testing <button onclick="addTaskFromList('Testing','Core')">➕</button></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
